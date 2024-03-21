@@ -1,7 +1,6 @@
 package fr.jasonbailleul.services;
 
 import fr.jasonbailleul.dto.MailDto;
-import fr.jasonbailleul.entities.MailEntity;
 import fr.jasonbailleul.outils.Validator;
 import fr.jasonbailleul.repositories.MailRepo;
 import fr.jasonbailleul.restCLient.ApiKeyClient;
