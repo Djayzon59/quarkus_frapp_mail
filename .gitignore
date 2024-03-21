@@ -18,7 +18,7 @@ bin/
 *.iml
 *.iws
 
-src/main/resources/application.properties
+/.application.properties
 
 # NetBeans
 nb-configuration.xml
@@ -43,3 +43,4 @@ nb-configuration.xml
 
 # Plugin directory
 /.quarkus/cli/
+src/main/resources/application.properties
