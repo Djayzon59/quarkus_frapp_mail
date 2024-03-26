@@ -14,8 +14,8 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
-@Path("/Mails/")
-@Tag(name = "Mails")
+@Path("/mails/")
+@Tag(name = "mails")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class MailService {
@@ -50,6 +50,21 @@ public class MailService {
         } else {
             return Response.status(statusCode).build();
         }
+
+    }
+
+    @Transactional
+    @PUT
+    @Produces(MediaType.TEXT_PLAIN)
+    @APIResponse(responseCode = "200", description = "Mail envoyé !")
+    @APIResponse(responseCode = "400", description = "Mail invalide !")
+    public Response sendMailWithoutKey(MailDto mailDto) {
+
+        if (!Validator.isMailValid(mailDto.getSendTo()))
+            return Response.ok("Adresse mail invalide ! ").status(400).build();
+
+        mailer.send(io.quarkus.mailer.Mail.withText(mailDto.getSendTo(), mailDto.getSubject(), mailDto.getTexte()));
+        return Response.ok(String.format("Le Message : %s, a été envoyé à : %s", mailDto.getSubject(), mailDto.getSendTo())).build();
 
     }
 }

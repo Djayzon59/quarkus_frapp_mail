@@ -9,7 +9,7 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 
 @RegisterRestClient
-@Path("/ApiKeys/")
+@Path("/apiKey/")
 public interface ApiKeyClient {
 
 
